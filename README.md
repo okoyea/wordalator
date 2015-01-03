@@ -12,17 +12,18 @@ gem 'wordalator', :git => "https://github.com/okoyea/wordalator.git"
 
 And then execute:
 
-    `bundle`
+    bundle
 
 Or install it yourself as:
 
-    `git clone https://github.com/okoyea/wordalator.git`
-    `cd wordalator && gem build wordalator.gemspec`
-    `gem install ./wordalator-0.0.1.gem`
+    git clone https://github.com/okoyea/wordalator.git
+    cd wordalator && gem build wordalator.gemspec
+    gem install ./wordalator-0.0.1.gem
 
 ## Usage
 
-Wordalator currently supports the most common math operations: `addition`, `subtraction`, `multiplication`, `division`, `exponents`
+Wordalator currently supports the most common math operations:
+    addition, subtraction, multiplication, division, exponents
 
 It can be used for single operations, multiple operations, and multiple sentences (which can contain any combination of single and multiple operations)
 
@@ -31,30 +32,30 @@ Note: Everything is being computed in a literal sense, meaning the order of oper
 ###Examples:
 Single operators:
 
-Addition
-`wordalate('What is 10 plus 2?') returns [12]`
-`wordalate('What is 10 added to 2?') returns [12]`
+Addition:
+    wordalate('What is 10 plus 2?') returns 12
+    wordalate('What is 10 added to 2?') returns 12
 
-Subtraction
-`wordalate('What is 10 minus 2?') returns [8]`
+Subtraction:
+    wordalate('What is 10 minus 2?') returns 8
 
-Division
-`wordalate('What is 10 divided by 2?') returns [5]`
+Division:
+    wordalate('What is 10 divided by 2?') returns 5
 
-Multiplication
-`wordalate('What is 10 times 2?') returns [20]`
-`wordalate('What is 10 multiplied by 2?') returns [20]`
+Multiplication:
+    wordalate('What is 10 times 2?') returns 20
+    wordalate('What is 10 multiplied by 2?') returns 20
 
-Exponents
-`wordalate('What is 10 to the power or 2?') returns [100]`
-`wordalate('What is 10 raised to the power of 2?') returns [5]`
+Exponents:
+    wordalate('What is 10 to the power or 2?') returns 100
+    wordalate('What is 10 raised to the power of 2?') returns 5
 
 Multiple operators:
-`wordalate('What is 4 plus 10 divided by 2?') returns [7]`
-`wordalate('What is 4 plus 10 plus 5 divided by 2?') returns [9.5]`
+    wordalate('What is 4 plus 10 divided by 2?') returns 7
+    wordalate('What is 4 plus 10 plus 5 divided by 2?') returns 9.5
 
 Multiple Sentences:
-`wordalate('What is 10 divided by 2? What is 4 plus 10 divided by 2? What is 4 to the 2nd power?') returns [5, 7, 16]`
+    wordalate('What is 10 divided by 2? What is 4 plus 10 divided by 2? What is 4 to the 2nd power?') returns [5, 7, 16]
 
 ## Contributing
 
