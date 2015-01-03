@@ -73,7 +73,7 @@ wordalate('What is 10 divided by 2? What is 4 plus 10 divided by 2? What is 4 to
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
 
-#Known Issues/Future Additions
+## Known Issues/Future Additions
 
 Handling sentences where the second operation in the sentence comes first in the calculation.
 
