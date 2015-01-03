@@ -4,35 +4,32 @@ describe Wordalator do
   subject { Object.new.extend Wordalator }
 
   describe 'wordalate' do
-    it 'should return the results when there in only one sentence' do
-      results = subject.wordalate('What is 10 divided by 2?')
-      expect(results).to eq 5
+    it 'should return the correct result when there is only one sentence' do
+      expect(subject.wordalate('What is 10 divided by 2?')).to eq 5
     end
 
-    it 'should return the results when there are multiple operators' do
-      results = subject.wordalate('What is 4 plus 10 divided by 2?')
-      expect(results).to eq 7
+    it 'should return the correct results when there are multiple operators in one sentence' do
+      expect(subject.wordalate('What is 4 plus 10 divided by 2?')).to eq 7
     end
 
-    it 'should return the results when there are multiple sentences' do
+    it 'should return the correct results when there are multiple sentences' do
       results = subject.wordalate('What is 10 divided by 2? What is 4 plus 10 divided by 2? What is 4 to the 2nd power?')
       expect(results).to eq [5, 7, 16]
     end
 
-    it 'should return the results when the solution is a decimal number' do
-      results = subject.wordalate('What is 4 plus 10 plus 5 divided by 2?')
-      expect(results).to eq 9.5
+    it 'should return the correct results when the solution is a decimal number' do
+      expect(subject.wordalate('What is 4 plus 10 plus 5 divided by 2?')).to eq 9.5
     end
   end
 
   describe 'separate nums from ops' do
+    let (:results) { subject.separate_nums_from_ops(['2', '3', 'plus']) }
+
     it 'should return an array of numbers' do
-      results = subject.separate_nums_from_ops(['2', '3', 'plus'])
       expect(results[0]).to eq ['2','3']
     end
 
     it 'should return an array of numbers' do
-      results = subject.separate_nums_from_ops(['2', '3', 'plus'])
       expect(results[1]).to eq ['plus']
     end
   end
@@ -65,15 +62,13 @@ describe Wordalator do
 
   describe 'exclude_words' do
     it 'should remove any unnecessary words from the sentence' do
-      result = subject.exclude_words('What is 4 to the 2nd power?')
-      expect(result).to eq ['4', '2nd', 'power?']
+      expect(subject.exclude_words('What is 4 to the 2nd power?')).to eq ['4', '2nd', 'power?']
     end
   end
 
   describe 'strip_suffixes' do
     it 'should strip any suffixes' do
-      result = subject.strip_suffixes(['4', '2nd', 'power?'])
-      expect(result).to eq ['4', '2', 'power']
+      expect(subject.strip_suffixes(['4', '2nd', 'power?'])).to eq ['4', '2', 'power']
     end
   end
 
