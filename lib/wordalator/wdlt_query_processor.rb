@@ -1,6 +1,3 @@
-# ia - initial array
-# ua - unstripped array
-# sa - stripped array
 require 'wordalator/wdlt_constants'
 
 class WDLTQueryProcessor
