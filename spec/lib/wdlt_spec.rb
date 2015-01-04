@@ -29,18 +29,6 @@ module Wordalator
       end
     end
 
-    describe 'separate nums from ops' do
-      let (:results) { w.separate_nums_from_ops(['2', '3', 'plus']) }
-
-      it 'should return an array of numbers' do
-        expect(results[0]).to eq ['2','3']
-      end
-
-      it 'should return an array of numbers' do
-        expect(results[1]).to eq ['plus']
-      end
-    end
-
     describe 'do_the_math'  do
       it 'should add numbers when the word "plus" is present' do
         expect(w.do_the_math(['4', '2'],['plus'])).to eq 6
@@ -64,26 +52,6 @@ module Wordalator
 
       it 'should return an answer for multiple operations' do
           expect(w.do_the_math(['4', '6', '2'], ['plus', 'divided'])).to eq 5
-      end
-    end
-
-    describe 'exclude_words' do
-      it 'should remove any unnecessary words from the sentence' do
-        expect(w.exclude_words('What is 4 to the 2nd power?')).to eq ['4', '2nd', 'power?']
-      end
-    end
-
-    describe 'strip_suffixes' do
-      it 'should strip any suffixes' do
-        expect(w.strip_suffixes(['4', '2nd', 'power?'])).to eq ['4', '2', 'power']
-      end
-    end
-
-    describe 'separate nums from ops' do
-      it 'should separate the numbers from the operators' do
-        nums,ops = w.separate_nums_from_ops(['4', '2', 'power'])
-        expect(nums).to eq ['4', '2']
-        expect(ops).to eq ['power']
       end
     end
   end
