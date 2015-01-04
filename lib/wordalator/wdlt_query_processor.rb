@@ -3,8 +3,6 @@ require 'wordalator/wdlt_constants'
 class WDLTQueryProcessor
   include WDLTConstants
 
-  attr_accessor :query
-
   def initialize(query)
     @query = query
   end
