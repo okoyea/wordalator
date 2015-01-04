@@ -1,4 +1,5 @@
 require 'wordalator/wdlt_constants'
+require 'wordalator/wdlt_query_processor'
 
 module Wordalator
   class WDLT
@@ -10,30 +11,11 @@ module Wordalator
       @query = query
     end
 
-    def exclude_words(q)
-      q.split - COMPARATORS
-    end
-
-    def strip_suffixes(unstripped_array)
-      unstripped_array.map!{|e| e.sub(/^r(?=d).|t(?=h).|n(?=d).|s(?=t).|[-?]/, '')}
-    end
-
-    def separate_nums_from_ops(stripped_array)
-      nums = []
-      ops = []
-
-      stripped_array.each do |str|
-        if /\d/.match(str)
-          nums << str
-        elsif /\D/.match(str)
-          ops << str
-        end
-      end
-
-      return nums, ops
-    end
-
     def do_the_math(nums, ops)
+
+      #validations
+      #nums cant be less than one integer
+      #ops must always be one less that the count of nums
 
       #to ensure we can calculate decimal numbers
       nums.map!(&:to_f)
@@ -53,16 +35,12 @@ module Wordalator
       result
     end
 
-    def process_input(q)
-      strip_suffixes(exclude_words(q))
-    end
-
     def parse
       results = []
       queries = @query.split('?')
 
       queries.each do |q|
-        nums,ops = separate_nums_from_ops(process_input(q))
+        nums,ops = WDLTQueryProcessor.new(q).process
 
         if (queries.count > 1)
           results << do_the_math(nums, ops)
