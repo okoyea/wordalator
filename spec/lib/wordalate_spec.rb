@@ -12,7 +12,7 @@ describe Wordalator do
     end
 
     it 'should return the correct results when there are multiple sentences' do
-      results = Wordalator.parse('What is 10 divided by 2? What is 4 plus 10 divided by 2? What is 4 to the 2nd power?')
+      results = Wordalator.parse('What is 10 divided by 2?', 'What is 4 plus 10 divided by 2?','What is 4 to the 2nd power?')
       expect(results).to eq [5, 7, 16]
     end
 
