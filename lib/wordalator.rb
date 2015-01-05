@@ -8,8 +8,10 @@ require "wordalator/wdlt"
 
 module Wordalator
   class << self
-    def parse(query)
-      w = WDLT.new(query)
+    attr_accessor :queries
+
+    def parse(*queries)
+      w = WDLT.new(queries)
       w.parse
     end
   end
