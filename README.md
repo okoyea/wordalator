@@ -63,7 +63,7 @@ wordalate('What is 4 plus 10 plus 5 divided by 2?') returns 9.5
 ```
 Multiple Sentences:
 ```
-wordalate('What is 10 divided by 2? What is 4 plus 10 divided by 2? What is 4 to the 2nd power?') returns [5, 7, 16]
+wordalate('What is 10 divided by 2?', 'What is 4 plus 10 divided by 2?','What is 4 to the 2nd power?') returns [5, 7, 16]
 ```
 ## Contributing
 
