@@ -1,14 +1,19 @@
 require 'wordalator/wdlt_constants'
 require 'wordalator/wdlt_query_processor'
+require 'active_model'
+
 
 module Wordalator
   class WDLT
     include WDLTConstants
+    include ActiveModel::Validations
 
-    attr_reader :query
+    validates_presence_of :query
 
-    def initialize(query)
-      @query = query
+    attr_accessor :queries
+
+    def initialize(queries)
+      @queries = queries
     end
 
     def do_the_math(nums, ops)
@@ -37,7 +42,6 @@ module Wordalator
 
     def parse
       results = []
-      queries = @query.split('?')
 
       queries.each do |q|
         nums,ops = WDLTQueryProcessor.new(q).process
