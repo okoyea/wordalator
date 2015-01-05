@@ -3,55 +3,63 @@ require 'wordalator/wdlt'
 
 module Wordalator
   describe WDLT do
-    let(:w) { WDLT.new('dummy query') }
-
     describe 'parse' do
-      def do_parse(queries)
-        w = WDLT.new(queries)
-        w.parse
+      let(:w) { WDLT.new(query) }
+
+      context 'when only one sentence exists' do
+        let(:query) { ['What is 10 divided by 2?'] }
+
+        it 'should return the correct result' do
+          expect(w.parse).to eq 5
+        end
       end
 
-      it 'should return the correct result when there is only one sentence' do
-        expect(do_parse(['What is 10 divided by 2?'])).to eq 5
+      context 'when there are multiple operators in one sentence' do
+        let(:query) { ['What is 4 plus 10 divided by 2?'] }
+
+        it 'should return the correct results' do
+          expect(w.parse).to eq 7
+        end
       end
 
-      it 'should return the correct results when there are multiple operators in one sentence' do
-        expect(do_parse(['What is 4 plus 10 divided by 2?'])).to eq 7
+      context 'when there are multiple sentences' do
+        let(:query) { ['What is 10 divided by 2?','What is 4 plus 10 divided by 2?',' What is 4 to the 2nd power?'] }
+
+        it 'should return the correct results' do
+          expect(w.parse).to eq [5, 7, 16]
+        end
       end
 
-      it 'should return the correct results when there are multiple sentences' do
-        results = do_parse(['What is 10 divided by 2?','What is 4 plus 10 divided by 2?',' What is 4 to the 2nd power?'])
-        expect(results).to eq [5, 7, 16]
+      context 'when the solution is a decimal number' do
+        let(:query) { ['What is 4 plus 10 plus 5 divided by 2?'] }
+
+        it 'should return the correct results' do
+          expect(w.parse).to eq 9.5
+        end
       end
 
-      it 'should return the correct results when the solution is a decimal number' do
-        expect(do_parse(['What is 4 plus 10 plus 5 divided by 2?'])).to eq 9.5
-      end
-    end
+      context 'when the solution is a decimal number' do
+        let(:query) { ['What is 4 plus 10 plus 5 divided by 2?'] }
 
-    describe 'do_the_math'  do
-      it 'should add numbers when the word "plus" is present' do
-        expect(w.do_the_math(['4', '2'],['plus'])).to eq 6
+        it 'should return the correct results' do
+          expect(w.parse).to eq 9.5
+        end
       end
 
-      it 'should subtract numbers when the word "minus" is present' do
-          expect(w.do_the_math(['4', '2'], ['minus'])).to eq 2
+      context 'when there are too few numbers' do
+        let(:query) { ['What is 5 minus?'] }
+
+        it 'should raise an error' do
+          lambda {w.parse}.should raise_error(ArgumentError)
+        end
       end
 
-      it 'should subtract numbers when the word "times" is present'  do
-          expect(w.do_the_math(['5', '3'],['times'])).to eq 15
-      end
+      context 'when there are too few operators' do
+        let(:query) { ['What is 5 2?'] }
 
-      it 'should divide numbers when the phrase "divided by" is present' do
-          expect(w.do_the_math(['6','3'], ['divided'])).to eq 2
-      end
-
-      it 'should raise a number to a power when the word "power" is present' do
-          expect(w.do_the_math(['4','2'], ['power'])).to eq 16
-      end
-
-      it 'should return an answer for multiple operations' do
-          expect(w.do_the_math(['4', '6', '2'], ['plus', 'divided'])).to eq 5
+        it 'should raise an error' do
+          lambda {w.parse}.should raise_error(ArgumentError)
+        end
       end
     end
   end
