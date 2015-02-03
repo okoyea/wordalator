@@ -59,7 +59,7 @@ module Wordalator
       @nums_count = nums.count
 
       if nums == nil || nums.count <= 1
-        raise ArgumentError.new('A query must contain at least two numbers')
+        raise ArgumentError, 'A query must contain at least two numbers'
       end
 
       @nums = nums
@@ -67,7 +67,7 @@ module Wordalator
 
     def ops=(ops)
       if ops == nil || ops.count != @nums_count - 1
-        raise ArgumentError.new('Too many operators exist in your query')
+        raise ArgumentError, 'Too many operators exist in your query'
       end
 
       @ops = ops
