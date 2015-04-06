@@ -1,6 +1,8 @@
 # Wordalator
 
-Do math calculations using words!
+Do math calculations using words! Inspired by the calculations that can be done in the google search bar
+
+This gem is a pet project, and was started because of my interest in natural language processing - it is nowhere near done or perfect, and I hope to make it more robust over time.
 
 ## Installation
 
