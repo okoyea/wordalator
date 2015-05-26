@@ -56,7 +56,7 @@ Wordalate.parse 'What is 10 multiplied by 2?' returns 20
 Exponents:
 ```
 Wordalate.parse 'What is 10 to the power or 2?' returns 100
-Wordalate.parse 'What is 10 raised to the power of 2?' returns 5
+Wordalate.parse 'What is 10 raised to the power of 2?' returns 100
 ```
 Multiple operators:
 ```
